@@ -10,6 +10,7 @@ class people::giginet {
   include pycharm
   include pythonbrew
   include pip
+  include java
 
   # install from Homebrew
   package {
