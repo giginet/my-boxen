@@ -8,8 +8,8 @@ class people::giginet {
   include alfred
   include wunderlist
   include pycharm
-  include pythonbrew
-  include pip
+#  include pythonbrew
+#  include pip
   include java
 
   # install from Homebrew
@@ -21,18 +21,20 @@ class people::giginet {
       'tmux',
       'reattach-to-user-namespace',
       'tig',
-      'hub',
       'git-flow',
       'yuicompressor',
-      'mercurial'
-      # GUI
-      'XtraFinder':
-        source   => "http://www.trankynam.com/xtrafinder/downloads/XtraFinder.dmg",
-        provider => pkgdmg;
-      'Google Japanese Input':
-        source   => "http://dl.google.com/dl/japanese-ime/1.8.1310.1/googlejapaneseinput.dmg",
-        provider => pkgdmg;
-    ]
+      'mercurial',
+    ]:
+  }
+
+  package {
+    # GUI
+    'XtraFinder':
+      source   => "http://www.trankynam.com/xtrafinder/downloads/XtraFinder.dmg",
+      provider => pkgdmg;
+    'Google Japanese Input':
+      source   => "http://dl.google.com/dl/japanese-ime/1.8.1310.1/googlejapaneseinput.dmg",
+      provider => pkgdmg;
   }
 
   $home = "/Users/${::luser}"
@@ -57,13 +59,13 @@ class people::giginet {
 
   # setup autojump from source
   # when I install it via homebrew, it seems to be not working.
-  repository { $desktop:
+  repository { "${documents}/autojump":
     source => "joelthelion/autojump",
-    require => File[$desktop]
+    require => File[$documents]
   }
-  exec { "sh ${desktop}/autojump/install.sh -g":
-    cwd => "${desktop}/autojump",
-    require => Repository["${desktop}/autojump"]
+  exec { "sh ${documents}/autojump/install.sh -g":
+    cwd => "${documents}/autojump",
+    require => Repository["${documents}/autojump"]
   }
 
   # change login shell for zsh via Homebrew
@@ -92,34 +94,34 @@ class people::giginet {
   }
 
   # setup python environment
-  class{'pythonbrew', }
-  python_version {'2.7.4':
-    ensure      => 'present',
-    default_use => true,
-    require     => Class['pythonbrew']
-  }
-  python_version {'3.3.1':
-    ensure      => 'present',
-    default_use => false,
-    require     => Class['pythonbrew']
-  }
+#  class{'pythonbrew', }
+#  python_version {'2.7.4':
+#    ensure      => 'present',
+#    default_use => true,
+#    require     => Class['pythonbrew']
+#  }
+#  python_version {'3.3.1':
+#    ensure      => 'present',
+#    default_use => false,
+#    require     => Class['pythonbrew']
+#  }
 
   # install pip packages
-  package { "PIL":
-    ensure => 'latest',
-    provider => 'pip',
-  }
-  package { "bpython":
-    ensure => 'latest',
-    provider => 'pip',
-  }
-
+#  package { "PIL":
+#    ensure => 'latest',
+#    provider => 'pip',
+#  }
+#  package { "bpython":
+#    ensure => 'latest',
+#    provider => 'pip',
+#  }
+#
   # install any arbitrary nodejs version
   nodejs { 'v0.10.1': }
 
   # install npm packages
-  nodejs::module { 'coffee-script':
-    nodejs_version => 'v0.10.1'
-  }
+#  nodejs::module { 'coffee-script':
+#    nodejs_version => 'v0.10.1'
+#  }
 
 } 

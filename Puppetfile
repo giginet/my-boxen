@@ -45,6 +45,3 @@ github "wunderlist", "1.0.0"
 github "pycharm",  "1.0.0"
 github "java",     "1.0.5"
 
-# for Python environment
-github "pythonbrew", "1.0.0", :repo => "narkisr/puppet-pythonbrew"
-github "pip",        "1.0.0", :repo => "rcrowley/puppet-pip"
