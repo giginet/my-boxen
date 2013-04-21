@@ -8,8 +8,8 @@ class people::giginet {
   include alfred
   include wunderlist
   include pycharm
-#  include pythonbrew
-#  include pip
+  include pythonbrew*/
+  include pip
   include java
 
   # install from Homebrew
@@ -93,18 +93,18 @@ class people::giginet {
       ruby    => '1.9.3',
   }
 
-  # setup python environment
-#  class{'pythonbrew', }
-#  python_version {'2.7.4':
-#    ensure      => 'present',
-#    default_use => true,
-#    require     => Class['pythonbrew']
-#  }
-#  python_version {'3.3.1':
-#    ensure      => 'present',
-#    default_use => false,
-#    require     => Class['pythonbrew']
-#  }
+# setup python environment
+class{'pythonbrew', }
+python_version {'2.7.4':
+  ensure      => 'present',
+  default_use => true,
+  require     => Class['pythonbrew']
+}
+python_version {'3.3.1':
+  ensure      => 'present',
+  default_use => false,
+  require     => Class['pythonbrew']
+}
 
   # install pip packages
 #  package { "PIL":

@@ -45,3 +45,4 @@ github "wunderlist", "1.0.0"
 github "pycharm",  "1.0.0"
 github "java",     "1.0.5"
 
+github "pythonbrew", "1.0.0", :repo => "narkisr/puppet-pythonbrew"
